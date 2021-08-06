@@ -64,6 +64,14 @@ namespace Data_Structures_and_Algorithms
                 Console.Write($"{item} ");
             }
             Console.WriteLine();
+
+            // Testing reverseList() method
+            Console.WriteLine("\t@reverseList()");
+            Console.WriteLine("### Initial list");
+            list.printList();
+            Console.WriteLine("### Reversed list");
+            list.reverseList();
+            list.printList();
         }
     }
 }

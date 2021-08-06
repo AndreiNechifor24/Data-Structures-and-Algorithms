@@ -22,7 +22,8 @@ namespace Data_Structures_and_Algorithms
                 * contains()
                 * indexOf()
                 * toArray()
-
+                * reverseList()
+                
          * AUTHOR: Andrei Nechifor
          
          * LAST UPDATED: August 5, 2021
@@ -247,6 +248,41 @@ namespace Data_Structures_and_Algorithms
 
         }
 
+        public void reverseList()
+        {
+            // [1 -> 2 -> 3 -> 4] => [4 -> 3 -> 2 -> 1]
+
+            // Intialize pointers
+            var previous = first;
+            var current = first.next;
+
+            // Set last element to first
+            last = first;
+
+            // Set last node, next node reference to null since it's the final one
+            last.next = null;
+
+            // Perform switching
+            while(current != null)
+            {
+                // Keep track of the current next value, before switching
+                var next = current.next;
+
+                // Setting current element next node to previous one - switching positions
+                current.next = previous;
+
+                // Shift values
+                
+                // Previous shifts to current 
+                previous = current;
+
+                // Current shits to next
+                current = next;
+            }
+
+            // Set first element to last known previous variable value
+            first = previous;
+        }
         
     }
 }
