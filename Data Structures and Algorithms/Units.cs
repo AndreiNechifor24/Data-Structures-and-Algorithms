@@ -72,6 +72,25 @@ namespace Data_Structures_and_Algorithms
             Console.WriteLine("### Reversed list");
             list.reverseList();
             list.printList();
+            Console.WriteLine("### Getting list to it's normal order");
+            list.reverseList();
+            Console.WriteLine("### Ordered list");
+            list.printList();
+
+            list.reverseList();//should be false
+            list.printList();
+
+            list.reverseList(); //should be true
+            list.printList();
+
+/*            list.reverseList(); //should be false   
+            list.printList();*/
+            Console.WriteLine(list.get_item_from_end(1));
+            Console.WriteLine(list.get_item_from_end(2));
+            /*            Console.WriteLine(list.get_item_from_end(1));
+                        Console.WriteLine(list.get_item_from_end(2));
+                        Console.WriteLine(list.get_item_from_end(3));
+                        Console.WriteLine(list.get_item_from_end(4));*/
         }
     }
 }
