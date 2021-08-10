@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Data_Structures_and_Algorithms
 {
-    class LinkedList
+    public class LinkedList
     {
         /*
          * PURPOSE: 
@@ -19,10 +19,11 @@ namespace Data_Structures_and_Algorithms
                 * addLast()
                 * deleteFirst()
                 * deleteLast()
-                * contains()
-                * indexOf()
+                * contains(int value)
+                * indexOf(int value)
                 * toArray()
                 * reverseList()
+                * get_item_from_end(int position)
                 
          * AUTHOR: Andrei Nechifor
          
@@ -30,8 +31,7 @@ namespace Data_Structures_and_Algorithms
          
        */
 
-
-        internal class Node
+        public class Node
         {
             internal int value; // current Node value
             internal Node next; // reference of the next Node
@@ -250,7 +250,7 @@ namespace Data_Structures_and_Algorithms
 
         public void reverseList()
         {
-            // [1 -> 2 -> 3 -> 4] => [4 -> 3 -> 2 -> 1]
+            // [1 -> 2 -> 3 -> 4] => [4 -> 3 -> 2 -> 1]           
 
             // Intialize pointers
             var previous = first;
@@ -282,7 +282,47 @@ namespace Data_Structures_and_Algorithms
 
             // Set first element to last known previous variable value
             first = previous;
+
         }
-        
+
+        public Node get_node_by_index(int index)
+        {
+            var current = first;
+            var current_index = 0;
+
+
+            // Perform searching
+            // Method optimization:
+            //  -> Given the index, the method will choose either one or another half to perform search on
+            if (index < this.listSize/2)
+            {
+                Console.WriteLine("Looking in the first half of the list");
+                current_index = 0;
+
+                while (current_index < index)
+                {
+                    current = current.next;
+                    current_index++;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Looking in the second half of the list");
+                current_index = this.listSize;
+                while (current_index > index)
+                {
+                    current = current.next;
+                    current_index--;
+                }
+            }
+
+
+            return current;
+        }
+
+        public int get_nth_node_from_end(int position)
+        {
+            return this.get_node_by_index(this.listSize - position).value;
+        }
     }
 }
