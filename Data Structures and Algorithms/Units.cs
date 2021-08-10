@@ -122,17 +122,65 @@ namespace Data_Structures_and_Algorithms
 
     public class StacksUnit : IUnits
     {
+        public Stack<object> stack;
+
         public string name()
         {
             return "Stacks";
         }
 
+        public StacksUnit()
+        {
+            stack = new Stack<object>();
+        }
+
+        public void PrintStack()
+        {
+            int index = 0;
+
+            Console.Write("[");
+            foreach (var item in stack)
+            {
+                Console.Write(item);
+
+                if (index < stack.Count()-1)
+                {
+                    Console.Write(",");
+                }
+
+                index++;
+            }
+
+            Console.Write("]");
+            Console.WriteLine();
+        }
+
+         
+
         public void RunUnit()
-        {            
-            var stack = new Stack<int>();
-            stack.Push(10);
-            stack.Push(20);
-            stack.Push(30);            
+        {
+            /*            this.stack.Push(10);
+                        this.stack.Push(20);
+                        this.stack.Push(30);
+
+                        this.PrintStack();
+                        stack.Pop(); // returns the removed value
+                        this.PrintStack();
+
+                        var top = this.stack.Peek();
+                        Console.WriteLine(top);
+                        this.PrintStack();*/
+
+            var str = "abcdefg";
+            foreach(var letter in str)
+            {
+                this.stack.Push(letter);
+            }
+
+            this.PrintStack();
+
+            
+
         }
     }
 }
