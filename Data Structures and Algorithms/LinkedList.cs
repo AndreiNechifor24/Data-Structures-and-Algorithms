@@ -31,13 +31,7 @@ namespace Data_Structures_and_Algorithms
          
        */
 
-        public LinkedList()
-        {
-            Console.WriteLine("INITIALIZE isOrdered to True");
-            this.isOrdered = true;
-        }
-
-        internal class Node
+        public class Node
         {
             internal int value; // current Node value
             internal Node next; // reference of the next Node
@@ -51,7 +45,6 @@ namespace Data_Structures_and_Algorithms
         private Node first { get; set; }
         private Node last { get; set; }
         private int listSize { get; set; }
-        private bool isOrdered { get; set; }
 
         /*
             * SECTION: ADD METHODS
@@ -290,65 +283,46 @@ namespace Data_Structures_and_Algorithms
             // Set first element to last known previous variable value
             first = previous;
 
-            // Keep track of reversing direction            
-            if (this.isOrdered)
-            {
-                this.isOrdered = false;
-            }
-            else
-            {
-                this.isOrdered = true;
-            }
-
-            Console.WriteLine("Current order state: " + this.isOrdered);
-
         }
 
-        public int get_item_from_end(int position)
+        public Node get_node_by_index(int index)
         {
-            if (this.isOrdered)
+            var current = first;
+            var current_index = 0;
+
+
+            // Perform searching
+            // Method optimization:
+            //  -> Given the index, the method will choose either one or another half to perform search on
+            if (index < this.listSize/2)
             {
-                this.reverseList();
+                Console.WriteLine("Looking in the first half of the list");
+                current_index = 0;
+
+                while (current_index < index)
+                {
+                    current = current.next;
+                    current_index++;
+                }
             }
             else
             {
-                Console.WriteLine("List already reversed");
+                Console.WriteLine("Looking in the second half of the list");
+                current_index = this.listSize;
+                while (current_index > index)
+                {
+                    current = current.next;
+                    current_index--;
+                }
             }
 
-            /*Console.WriteLine("### LOG: Reversed list: ");*/
-            /*this.printList();*/
-            if(position > this.listSize)
-            {
-                throw new Exception("Position should not exceed list size !");
-            }
 
-            if(position < 0)
-            {
-                throw new Exception("Position argument should be a positive value");
-            }
-
-            if (position == 1)
-            {
-                return first.value;
-            }
-
-            else if (position == this.listSize) return last.value;
-
-
-            int index = 0;
-            var current = first;
-            while (index < position)
-            {
-                current = current.next;
-                index++;
-            }
-
-            var result = current.value;
-
-            this.reverseList();
-            return result;
-
+            return current;
         }
 
+        public int get_nth_node_from_end(int position)
+        {
+            return this.get_node_by_index(this.listSize - position).value;
+        }
     }
 }
