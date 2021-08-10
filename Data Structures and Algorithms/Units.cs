@@ -8,11 +8,17 @@ namespace Data_Structures_and_Algorithms
 {
     public interface IUnits
     {
+        string name();
         void RunUnit();
     }
 
     public class LinkedListsUnit : IUnits
     {
+        public string name()
+        {
+            return "Linked Lists Unit";
+        }
+        
         public void RunUnit()
         {
             Console.WriteLine("######### RUNING UNIT: LinkedListsUnit #########");
@@ -111,6 +117,22 @@ namespace Data_Structures_and_Algorithms
             Console.WriteLine($"5hth element from the last of list is {list.get_nth_node_from_end(5)}");
             Console.WriteLine($"1st element of list is {list.get_nth_node_from_end(6)}");
 
+        }
+    }
+
+    public class StacksUnit : IUnits
+    {
+        public string name()
+        {
+            return "Stacks";
+        }
+
+        public void RunUnit()
+        {            
+            var stack = new Stack<int>();
+            stack.Push(10);
+            stack.Push(20);
+            stack.Push(30);            
         }
     }
 }
